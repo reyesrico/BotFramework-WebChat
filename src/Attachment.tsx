@@ -157,7 +157,7 @@ export const AttachmentView = (props: {
     const attachedImage = (
         images: CardImage[]
     ) => images && images.length > 0 &&
-        <Media src={ images[0].url } onLoad={ props.onImageLoad } onClick={ onCardAction(images[0].tap) } />;
+        <Media src={ images[0].url } onLoad={ props.onImageLoad } onClick={ onCardAction(images[0].tap) } alt={ images[0].alt } />;
     const getRichCardContentMedia = (
         type: 'image' | 'video' | 'audio' | { (url: string): 'image' | 'video' | 'audio' },
         content: {
@@ -183,7 +183,6 @@ export const AttachmentView = (props: {
         // rendering every media in the media array. Validates every type as image, video, audio or a function that returns those values.  
         return content.media.map((md, i) => {
             let t = (typeof type === 'string')? type : type(md.url);
-
             return <Media
                 type={ t }
                 src={ md.url }
